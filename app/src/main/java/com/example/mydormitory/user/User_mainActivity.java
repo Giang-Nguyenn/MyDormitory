@@ -70,8 +70,6 @@ public class User_mainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-//                        Toast.makeText(User_mainActivity.this,a.toString(),Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray data=new JSONArray(response);
                             JSONObject user=data.getJSONObject(0);

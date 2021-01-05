@@ -74,8 +74,6 @@ public class UserViewRoomActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(UserViewRoomActivity.this,Integer.toString(response.length()).toString(), Toast.LENGTH_LONG).show();
-                        Toast.makeText(UserViewRoomActivity.this,response.toString(), Toast.LENGTH_LONG).show();
                         try {
                             JSONArray jsonArray=new JSONArray(response);
                             for(int i=0;i<response.length();i++){
@@ -85,7 +83,7 @@ public class UserViewRoomActivity extends AppCompatActivity {
                                         jsonArray.getJSONObject(i).getString("UserId").toString()));
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(UserViewRoomActivity.this,e.getMessage().toString()+"111111", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserViewRoomActivity.this,e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }

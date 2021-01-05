@@ -26,6 +26,8 @@
         <activity android:name=".Admin.Admin_viewUser_Activity"/>
         <activity android:name=".Admin.Admin_AddUserActivity"/>
         <activity android:name=".user.Activity_User_Notification"/>
+        <activity android:name=".Admin.Admin_Fees_Activity"/>
+        <activity android:name=".Admin.Admin_Fees_Add_Activity"/>
     </application>
 
 </manifest>

@@ -7,16 +7,24 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:textSize="20dp"
-        android:background="#00A6FF"
-        android:id="@+id/txt_roomname"
+        android:id="@+id/txt_name"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:text="Name"
         android:gravity="center"
-        android:text="Thông tin phòng"
+        android:background="#3F51B5"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Thêm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
     <ListView
         android:id="@+id/listview"
@@ -24,29 +32,13 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_roomname" />
-
-    <Button
-        android:background="#3F51B5"
-        android:textColor="@android:color/background_light"
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Thêm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_roomname" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_add" />
     <include layout="@layout/admin_header_footer"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

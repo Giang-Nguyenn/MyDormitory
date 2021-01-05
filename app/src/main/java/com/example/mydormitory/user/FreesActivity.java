@@ -3,6 +3,7 @@ package com.example.mydormitory.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,16 +25,17 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import static android.widget.Toast.makeText;
-
 public class FreesActivity  extends AppCompatActivity {
     ListView listView;
     Adapter_Fees adapter_fees;
     ArrayList<User_lvFees> lvFeesList=new ArrayList<>();
     Hi hi=new Hi();
+
+    Button btn_room;
+    Button btn_mesenger;
+    Button btn_fees;
+    Button btn_notifycation;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +43,13 @@ public class FreesActivity  extends AppCompatActivity {
         SharedPreferences sharedPref =getSharedPreferences("User", Context.MODE_PRIVATE);
         final String UserId = sharedPref.getString("UserId", "ko co name");
         String url=hi.getIp().toString()+"User/getlvfees.php";
-
-        makeText(this,UserId,Toast.LENGTH_SHORT).show();
-        listView=findViewById(R.id.listview);
+        Anhxa();
         GetLvFees(url,UserId);
         adapter_fees=new Adapter_Fees(this,R.layout.user_free_custom_item,lvFeesList);
         listView.setAdapter(adapter_fees);
 
         Click_Button click_button =new Click_Button();
-        //click_button.Click(User_mainActivity.this,UserId,btn_room,btn_mesenger,btn_notifycation,btn_fees);
+        click_button.Click(FreesActivity.this,UserId,btn_room,btn_mesenger,btn_notifycation,btn_fees);
     }
 
     private void GetLvFees(String url, final String UserId){
@@ -58,7 +58,6 @@ public class FreesActivity  extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(FreesActivity.this,response.toString(),Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray jsonArray=new JSONArray(response);
                             for(int i=0;i<jsonArray.length();i++){
@@ -86,6 +85,14 @@ public class FreesActivity  extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
+
+    }
+    private void Anhxa(){
+        listView=findViewById(R.id.listview);
+        btn_room=(Button) findViewById(R.id.btn_room);
+        btn_mesenger=(Button) findViewById(R.id.btn_messenger);
+        btn_fees=(Button) findViewById(R.id.btn_fees);
+        btn_notifycation=(Button) findViewById(R.id.btn_notification);
 
     }
 }

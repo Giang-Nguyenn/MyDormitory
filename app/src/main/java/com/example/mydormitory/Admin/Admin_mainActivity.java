@@ -1,12 +1,15 @@
 package com.example.mydormitory.Admin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
@@ -33,23 +36,28 @@ public class Admin_mainActivity extends AppCompatActivity{
     ArrayList<Admin_LvRoom> admin_lvRooms=new ArrayList<>();
     ArrayList<Admin_LvRoom> admin_lvRooms1=new ArrayList<>();
 
+    Button btn_home;
+    Button btn_mesenger;
+    Button btn_fees;
+    Button btn_notifycation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_main);
         Hi hi=new Hi();
         String url=hi.getIp().toString()+"Admin/getlistroom.php";
-        Intent intent=getIntent();
-        gridView=(GridView) findViewById(R.id.grid_view);
-        edt_seach=(EditText) findViewById(R.id.edt_seach);
+        Anhxa();
+        final SharedPreferences sharedPref = getSharedPreferences("Admin", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("Status", "Admin");
+        editor.commit();
         GetListRoom(url);
         final Adapter_Admin_LvRoom adapter_admin_lvRoom=new Adapter_Admin_LvRoom(this,R.layout.custom_admin_list_room,admin_lvRooms);
         gridView.setAdapter(adapter_admin_lvRoom);
-        Log.d("Hi",Integer.toString(Size(admin_lvRooms)));
         edt_seach.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -80,11 +88,18 @@ public class Admin_mainActivity extends AppCompatActivity{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences.Editor editor=sharedPref.edit();
+                editor.putString("Status","Room"+admin_lvRooms.get(position).getName().toString().trim());
+                editor.commit();
                 Intent intent1=new Intent(Admin_mainActivity.this, Admin_LvUserActivity.class);
                 intent1.putExtra("RoomId",admin_lvRooms.get(position).getName().toString().trim());
                 startActivity(intent1);
             }
         });
+
+
+        Click_Button click_button=new Click_Button();
+        click_button.Click(Admin_mainActivity.this,btn_home,btn_fees,btn_notifycation,btn_mesenger);
 
     }
     private  Integer Size(ArrayList a){
@@ -120,5 +135,15 @@ public class Admin_mainActivity extends AppCompatActivity{
                     }
                 });
         requestQueue.add(stringRequest);
+    }
+    private void Anhxa(){
+        gridView=(GridView) findViewById(R.id.grid_view);
+        edt_seach=(EditText) findViewById(R.id.edt_seach);
+
+        btn_home=(Button) findViewById(R.id.btn_home);
+        btn_mesenger=(Button) findViewById(R.id.btn_messenger);
+        btn_fees=(Button) findViewById(R.id.btn_fees);
+        btn_notifycation=(Button) findViewById(R.id.btn_notification);
+
     }
 }

@@ -1,6 +1,8 @@
 package com.example.mydormitory.Admin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,21 +44,26 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
     TextView txt_phone;
     TextView txt_begin;
     TextView txt_addinfor;
-    Button btn_room;
+    Button btn_home;
     Button btn_mesenger;
     Button btn_fees;
-    Button btn_nitifycation;
+    Button btn_notifycation;
     Hi hi=new Hi();
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_main);
+        setContentView(R.layout.admin_view_user);
+        final SharedPreferences sharedPref =getSharedPreferences("Admin", Context.MODE_PRIVATE);
+        final String Status = sharedPref.getString("Status", "1");
+        Toast.makeText(this,Status,Toast.LENGTH_SHORT).show();
         Anhxa();
-        Intent intent=getIntent();
-        final String Id=intent.getStringExtra("ID");
+//        Intent intent=getIntent();
+        final String Id=Status.toString().trim().substring(4);
         String url=hi.getIp().toString()+"Admin/getdatauser.php";
-        Toast.makeText(Admin_viewUser_Activity.this,Id,Toast.LENGTH_SHORT).show();
         GetDataUser(url,Id);
+
+        Click_Button click_button=new Click_Button();
+        click_button.Click(Admin_viewUser_Activity.this,btn_home,btn_fees,btn_notifycation,btn_mesenger);
     }
     private void GetDataUser(String url, final String Id){
         RequestQueue requestQueue= Volley.newRequestQueue(this);
@@ -113,10 +120,10 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
         txt_phone=(TextView) findViewById(R.id.txt_phone);
         txt_begin=(TextView) findViewById(R.id.txt_begin);
         txt_addinfor=(TextView) findViewById(R.id.txt_addinfor);
-        btn_room=(Button) findViewById(R.id.btn_room);
+        btn_home=(Button) findViewById(R.id.btn_home);
         btn_mesenger=(Button) findViewById(R.id.btn_messenger);
         btn_fees=(Button) findViewById(R.id.btn_fees);
-        btn_nitifycation=(Button) findViewById(R.id.btn_notification);
+        btn_notifycation=(Button) findViewById(R.id.btn_notification);
 
     }
 }

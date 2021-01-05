@@ -1,10 +1,14 @@
 package com.example.mydormitory.Admin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,18 +39,24 @@ public class Admin_LvUserActivity extends AppCompatActivity {
     ListView listView;
     Button button_add;
     ArrayList<Admin_LvUser> admin_lvUsers=new ArrayList<>();
+
+    Button btn_home;
+    Button btn_mesenger;
+    Button btn_fees;
+    Button btn_notifycation;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_view_room);
-        final Intent intent=getIntent();
+        Anhxa();
         Hi hi=new Hi();
         String url=hi.getIp().toString()+"Admin/getdatalvroom.php";
-        txt_roomname=(TextView) findViewById(R.id.txt_roomname);
-        listView=(ListView) findViewById(R.id.listview);
-        button_add=(Button) findViewById(R.id.btn_add);
-        txt_roomname.setText("Phòng "+intent.getStringExtra("RoomId"));
-        GetDatalvRoom(url,intent.getStringExtra("RoomId").toString());
+
+        final SharedPreferences sharedPref =getSharedPreferences("Admin", Context.MODE_PRIVATE);
+        final String Status = sharedPref.getString("Status", "1");
+        Toast.makeText(this,Status.toString().trim().substring(4),Toast.LENGTH_SHORT).show();
+        txt_roomname.setText("Phòng "+Status.toString().trim().substring(4));
+        GetDatalvRoom(url,Status.toString().trim().substring(4));
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
@@ -57,6 +67,9 @@ public class Admin_LvUserActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences.Editor editor=sharedPref.edit();
+                editor.putString("Status","User"+admin_lvUsers.get(position).getUserId().toString().trim());
+                editor.commit();
                 Intent intent1=new Intent(Admin_LvUserActivity.this,Admin_viewUser_Activity.class);
                 intent1.putExtra("ID",admin_lvUsers.get(position).getUserId().toString().trim());
                 startActivity(intent1);
@@ -67,7 +80,7 @@ public class Admin_LvUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(admin_lvUsers.size()<8){
                     Intent intent1=new Intent(Admin_LvUserActivity.this,Admin_AddUserActivity.class);
-                    intent1.putExtra("RoomId",intent.getStringExtra("RoomId"));
+                    intent1.putExtra("RoomId",Status.toString().trim().substring(4));
                     intent1.putExtra("Number",Integer.toString(admin_lvUsers.size()+1));
                     startActivity(intent1);
                 }
@@ -77,6 +90,9 @@ public class Admin_LvUserActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Click_Button click_button=new Click_Button();
+        click_button.Click(Admin_LvUserActivity.this,btn_home,btn_fees,btn_notifycation,btn_mesenger);
     }
     private void GetDatalvRoom(String url, final String RoomId) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -116,5 +132,17 @@ public class Admin_LvUserActivity extends AppCompatActivity {
             ;
         };
         requestQueue.add(stringRequest);
+    }
+
+    private void Anhxa(){
+        txt_roomname=(TextView) findViewById(R.id.txt_roomname);
+        listView=(ListView) findViewById(R.id.listview);
+        button_add=(Button) findViewById(R.id.btn_add);
+
+        btn_home=(Button) findViewById(R.id.btn_home);
+        btn_mesenger=(Button) findViewById(R.id.btn_messenger);
+        btn_fees=(Button) findViewById(R.id.btn_fees);
+        btn_notifycation=(Button) findViewById(R.id.btn_notification);
+
     }
 }
