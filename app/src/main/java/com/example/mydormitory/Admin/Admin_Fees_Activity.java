@@ -1,5 +1,6 @@
 package com.example.mydormitory.Admin;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -43,7 +43,6 @@ public class Admin_Fees_Activity extends AppCompatActivity {
     ListView listView;
     ArrayList<Admin_Frees> admin_freesArrayList=new ArrayList<>();
     Admin_Fees_Adapter admin_fees_adapter;
-    //Button button_add;
 
     Button btn_home;
     Button btn_mesenger;
@@ -136,7 +135,7 @@ public class Admin_Fees_Activity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(Admin_Fees_Activity.this,response.toString(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Admin_Fees_Activity.this,"Thành công",Toast.LENGTH_SHORT).show();
                             }
                         },
                         new Response.ErrorListener() {
@@ -154,7 +153,12 @@ public class Admin_Fees_Activity extends AppCompatActivity {
                     }
                 };
                 requestQueue.add(stringRequest);
+                dialog.dismiss();
+                Intent intent=new Intent(Admin_Fees_Activity.this,Admin_Fees_Activity.class);
+                startActivity(intent);
             }
+
+
         });
         btn_no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,11 +168,23 @@ public class Admin_Fees_Activity extends AppCompatActivity {
         });
         dialog.show();
     }
+    private void dialog(String s){
+        android.app.AlertDialog.Builder dialog =new AlertDialog.Builder(this);
+        dialog.setTitle(s);
+        dialog.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent=new Intent(Admin_Fees_Activity.this,Admin_Fees_Activity.class);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
+    }
     private void Anhxa(){
         txt_name=(TextView) findViewById(R.id.txt_name);
         listView=(ListView) findViewById(R.id.listview);
         btn_add=(Button) findViewById(R.id.btn_add);
-        //button_add=(Button) findViewById(R.id.btn_add);
 
         btn_home=(Button) findViewById(R.id.btn_home);
         btn_mesenger=(Button) findViewById(R.id.btn_messenger);
