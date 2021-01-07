@@ -1,6 +1,7 @@
 package com.example.mydormitory.Admin;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -86,7 +88,16 @@ public class Admin_LvUserActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(Admin_LvUserActivity.this,"No",Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alertDialog=new AlertDialog.Builder(Admin_LvUserActivity.this);
+                    alertDialog.setMessage("Đã đủ số lượng");
+                    alertDialog.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alertDialog.show();
+
                 }
             }
         });

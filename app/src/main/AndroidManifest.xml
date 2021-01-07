@@ -21,6 +21,8 @@
         <activity android:name=".user.User_mainActivity"/>
         <activity android:name=".user.UserViewRoomActivity"/>
         <activity android:name=".user.FreesActivity"/>
+        <activity android:name=".user.User_Messenger_Activity"/>
+        <activity android:name=".user.User_Messenger_Content_Activity"/>
         <activity android:name=".Admin.Admin_mainActivity"/>
         <activity android:name=".Admin.Admin_LvUserActivity"/>
         <activity android:name=".Admin.Admin_viewUser_Activity"/>
@@ -28,6 +30,9 @@
         <activity android:name=".user.Activity_User_Notification"/>
         <activity android:name=".Admin.Admin_Fees_Activity"/>
         <activity android:name=".Admin.Admin_Fees_Add_Activity"/>
+        <activity android:name=".Admin.Admin_Notification_Add_Activity"/>
+        <activity android:name=".Admin.Admin_Messenger_Activity"/>
+        <activity android:name=".Admin.Admin_Messenger_Content_Activity"/>
     </application>
 
 </manifest>

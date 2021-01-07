@@ -2,13 +2,12 @@ package com.example.mydormitory.Admin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
-class Click_Button {
+public class Click_Button {
     private Button btn_home;
     private Button btn_fees;
     private Button btn_notification;
@@ -34,7 +33,7 @@ class Click_Button {
         btn_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,Admin_mainActivity.class);
+                Intent intent=new Intent(context,Admin_Notification_Add_Activity.class);
                 startActivity(context,intent,null);
             }
         });
@@ -42,7 +41,8 @@ class Click_Button {
         btn_messenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,Admin_mainActivity.class);
+                Intent intent=new Intent(context, Admin_Messenger_Activity.class);
+                intent.putExtra("Id","Admin");
                 startActivity(context,intent,null);
             }
         });

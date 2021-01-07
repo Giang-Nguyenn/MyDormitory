@@ -47,7 +47,7 @@ public class Click_Button {
         btn_mesenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_viewroom = new Intent(context, UserViewRoomActivity.class);
+                Intent intent_viewroom = new Intent(context, User_Messenger_Activity.class);
                 intent_viewroom.putExtra("Id", UserId);
                 startActivity(context,intent_viewroom,null);
             }

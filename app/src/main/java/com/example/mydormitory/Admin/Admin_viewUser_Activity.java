@@ -44,11 +44,13 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
     TextView txt_phone;
     TextView txt_begin;
     TextView txt_addinfor;
+    Button btn_send;
     Button btn_home;
     Button btn_mesenger;
     Button btn_fees;
     Button btn_notifycation;
     Hi hi=new Hi();
+    String nameimage;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,8 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
         final String Id=Status.toString().trim().substring(4);
         String url=hi.getIp().toString()+"Admin/getdatauser.php";
         GetDataUser(url,Id);
+
+
 
         Click_Button click_button=new Click_Button();
         click_button.Click(Admin_viewUser_Activity.this,btn_home,btn_fees,btn_notifycation,btn_mesenger);
@@ -77,6 +81,7 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
                             JSONObject user=data.getJSONObject(0);
                             txt_name.setText(user.getString("Name"));
                             Picasso.get().load(hi.getIp().toString()+user.getString("Image").substring(21)).into(image_View);
+                            nameimage=user.getString("Image").substring(21);
                             txt_birthday.setText("Ngày sinh : "+user.getString("Birthday"));
                             txt_gt.setText("Giới tinh : "+user.getString("Sex"));
                             txt_class.setText("Lớp : ");
@@ -91,6 +96,18 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        Toast.makeText(Admin_viewUser_Activity.this,nameimage+"-"+Id+"-"+txt_name.getText().toString(),Toast.LENGTH_LONG).show();
+                        btn_send.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(Admin_viewUser_Activity.this,Admin_Messenger_Content_Activity.class);
+
+                                intent.putExtra("MessengerId","{Admin}"+"-"+"{"+Id+"}");
+                                intent.putExtra("Image",nameimage.toString());
+                                intent.putExtra("Name",txt_name.getText().toString());
+                                startActivity(intent);
+                            }
+                        });
                     }
                 },
                 new Response.ErrorListener() {
@@ -120,6 +137,7 @@ public class Admin_viewUser_Activity extends AppCompatActivity {
         txt_phone=(TextView) findViewById(R.id.txt_phone);
         txt_begin=(TextView) findViewById(R.id.txt_begin);
         txt_addinfor=(TextView) findViewById(R.id.txt_addinfor);
+        btn_send=(Button) findViewById(R.id.btn_send);
         btn_home=(Button) findViewById(R.id.btn_home);
         btn_mesenger=(Button) findViewById(R.id.btn_messenger);
         btn_fees=(Button) findViewById(R.id.btn_fees);

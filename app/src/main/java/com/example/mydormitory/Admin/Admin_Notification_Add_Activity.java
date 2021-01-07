@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,31 +31,27 @@ import com.example.mydormitory.R;
 import java.util.HashMap;
 import java.util.Map;
 
-public  class Admin_Fees_Add_Activity extends AppCompatActivity {
-     String option;
-     EditText edt_namefees;
-     EditText edt_addinfor;
-     EditText edt_id;
-     TextView txt_id;
-     RadioGroup radioGroup;
-     Button btn_done;
+public class Admin_Notification_Add_Activity extends AppCompatActivity {
+    String option;
+    EditText edt_name_notifi;
+    EditText edt_content;
+    EditText edt_id;
+    TextView txt_id;
+    RadioGroup radioGroup;
+    Button btn_done;
 
-     Button btn_home;
-     Button btn_mesenger;
-     Button btn_fees;
-     Button btn_notifycation;
+    Button btn_home;
+    Button btn_mesenger;
+    Button btn_fees;
+    Button btn_notifycation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_fees_add);
+        setContentView(R.layout.admin_notification_add);
         Anhxa();
         Hi hi=new Hi();
-        final String url=hi.getIp().toString().trim()+"Admin/add_fees.php";
-        SharedPreferences sharedPref=getSharedPreferences("Admin",Context.MODE_PRIVATE);
-        final String Status = sharedPref.getString("Status", "1");
-        Toast.makeText(Admin_Fees_Add_Activity.this,Status,Toast.LENGTH_SHORT).show();
-
+        final String url=hi.getIp().toString().trim()+"Admin/add_notify.php";
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -78,71 +75,74 @@ public  class Admin_Fees_Add_Activity extends AppCompatActivity {
                 }
             }
         });
+
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fees_Add(url,Status,option,edt_namefees.getText().toString(),edt_addinfor.getText().toString(),edt_id.getText().toString().trim());
+                Add_notify(url,edt_name_notifi.getText().toString(),edt_content.getText().toString(),option,edt_id.getText().toString());
             }
         });
 
+
         Click_Button click_button=new Click_Button();
-        click_button.Click(Admin_Fees_Add_Activity.this,btn_home,btn_fees,btn_notifycation,btn_mesenger);
-
+        click_button.Click(Admin_Notification_Add_Activity.this,btn_home,btn_fees,btn_notifycation,btn_mesenger);
     }
-    private void Case(RadioGroup radioGroup, final String url, final String Status){
-
-    }
-    private void Fees_Add(String url, final String Status, final String check, final String Describe, final String Add_Infor, final String ListId){
+    private void Add_notify(String url, final String Describe, final String Content, final String Option, final String ListId){
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         StringRequest stringRequest=new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response.equals("Success")){
-                            dialog(response.toString().trim());
+                        if(response.toString().trim().equals("Success")){
+                            Dialog(response.toString());
                         }
                         else {
-                            dialog("Lỗi");
+                            Dialog(response.toString());
+                            Log.e("AAAA1",response.toString());
                         }
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        dialog("lỗi");
-
+                        Dialog("Lỗiiii");
+                        Log.e("AAAA",error.getMessage().toString());
                     }
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> param=new HashMap<>();
-                param.put("Status",Status);
-                param.put("Option",check);
                 param.put("Describe",Describe);
-                param.put("Add_Infor",Add_Infor);
-                param.put("ListId",ListId);
+                param.put("Content",Content);
+                param.put("Option",Option);
+                param.put("ListId", ListId);
+
                 return param;
             }
         };
         requestQueue.add(stringRequest);
 
     }
-    private void dialog(String s){
-        AlertDialog.Builder dialog =new AlertDialog.Builder(this);
-        dialog.setTitle(s);
-        dialog.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+    private void Dialog(String messenger){
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+        alertDialog.setTitle(messenger);
+        alertDialog.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                Intent intent=new Intent(Admin_Fees_Add_Activity.this,Admin_Fees_Add_Activity.class);
+                Intent intent=new Intent(Admin_Notification_Add_Activity.this,Admin_Notification_Add_Activity.class);
                 startActivity(intent);
             }
         });
-        dialog.show();
+        alertDialog.show();
+
     }
+
+
     private void Anhxa(){
-        edt_namefees=(EditText) findViewById(R.id.edt_namefees);
-        edt_addinfor=(EditText) findViewById(R.id.edt_addinfor);
+        edt_name_notifi=(EditText) findViewById(R.id.edt_name_notifi);
+        edt_content=(EditText) findViewById(R.id.edt_content);
         edt_id=(EditText) findViewById(R.id.edt_id);
         txt_id=(TextView) findViewById(R.id.txt_id);
         radioGroup=(RadioGroup) findViewById(R.id.radioGroup);
