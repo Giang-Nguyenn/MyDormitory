@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.mydormitory.Hi;
 import com.example.mydormitory.R;
+import com.example.mydormitory.font.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -66,7 +67,7 @@ class Admin_Messenger_Header_Adapter extends BaseAdapter {
             txt_mess.setText("User"+messenger_header.getMessenger());
         }
         txt_time.setText(messenger_header.getTime().substring(11,16));
-        Picasso.get().load(hi.getIp().toString()+messenger_header.getImage().toString()).into(image_view);
+        Picasso.get().load(hi.getIp().toString()+messenger_header.getImage().toString()).transform(new CircleTransform()).into(image_view);
 
 
         return convertView;

@@ -164,6 +164,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_id" />
 
             <Button
+                android:background="@drawable/button_done"
                 android:id="@+id/btn_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -171,6 +172,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:text="Hoàn thành"
+                android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_id" />
 

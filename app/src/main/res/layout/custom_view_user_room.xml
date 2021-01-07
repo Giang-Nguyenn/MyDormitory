@@ -27,12 +27,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center_vertical"
+        android:textColor="@color/colorWhite1"
         android:text="Họ và tên"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_view"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/colorWhite1"
         android:id="@+id/txt_birthday"
         android:layout_width="0dp"
         android:layout_height="30dp"

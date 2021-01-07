@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mydormitory.Hi;
 import com.example.mydormitory.R;
+import com.example.mydormitory.font.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -74,7 +75,7 @@ public class User_mainActivity extends AppCompatActivity {
                             JSONArray data=new JSONArray(response);
                             JSONObject user=data.getJSONObject(0);
                             txt_name.setText(user.getString("Name"));
-                            Picasso.get().load(hi.getIp().toString()+user.getString("Image").substring(21)).into(image_View);
+                            Picasso.get().load(hi.getIp().toString()+user.getString("Image").substring(21)).transform(new CircleTransform()).into(image_View);
                             txt_birthday.setText("Ngày sinh : "+user.getString("Birthday"));
                             txt_gt.setText("Giới tinh : "+user.getString("Sex"));
                             txt_class.setText("Lớp : ");

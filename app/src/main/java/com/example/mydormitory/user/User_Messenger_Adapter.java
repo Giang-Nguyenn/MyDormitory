@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.mydormitory.font.CircleTransform;
 import com.example.mydormitory.user.User_Messenger;
 import com.example.mydormitory.Hi;
 import com.example.mydormitory.R;
@@ -64,14 +65,14 @@ class User_Messenger_Adapter extends BaseAdapter {
         User_Messenger messenger=messengerList.get(position);
         if(messenger.getId_send().equals("Admin")){
             right_ct.setVisibility(View.GONE);
-            Picasso.get().load(hi.getIp().toString()+Image).into(left_image_view);
+            Picasso.get().load(hi.getIp().toString()+Image).transform(new CircleTransform()).into(left_image_view);
             left_txt_messenger.setText(messenger.getMessenger());
             left_txt_time.setText(messenger.getTime());
 
         }
         else {
             left_ct.setVisibility(View.GONE);
-            Picasso.get().load(hi.getIp().toString()+"Images/Admin.PNG").into(right_image_view);
+            Picasso.get().load(hi.getIp().toString()+"Images/Admin.PNG").transform(new CircleTransform()).into(right_image_view);
             right_txt_messenger.setText(messenger.getMessenger());
             right_txt_time.setText(messenger.getTime());
 

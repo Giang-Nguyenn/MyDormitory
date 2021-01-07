@@ -3,17 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_big"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:textSize="20dp"
-        android:background="#00A6FF"
         android:id="@+id/txt_roomname"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:gravity="center"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
         android:text="Thông tin phòng"
+        android:textColor="#FDFCFC"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +29,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="50dp"
@@ -35,18 +40,22 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_roomname" />
 
     <Button
-        android:background="#3F51B5"
-        android:textColor="@android:color/background_light"
         android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Thêm"
+        android:background="@drawable/button_round"
+        android:text="+"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_roomname" />
-    <include layout="@layout/admin_header_footer"/>
+        app:layout_constraintTop_toTopOf="@+id/include2" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/admin_header_footer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

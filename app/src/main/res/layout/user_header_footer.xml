@@ -8,6 +8,7 @@
     tools:ignore="MissingDefaultResource">
 
     <LinearLayout
+        android:background="@drawable/backgroud_bodertop"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="0dp"
@@ -20,6 +21,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
+            android:background="@drawable/custom_button"
             android:id="@+id/btn_room"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -27,6 +29,7 @@
             android:text="Phòng" />
 
         <Button
+            android:background="@drawable/custom_button"
             android:id="@+id/btn_fees"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -34,6 +37,7 @@
             android:text="Khoản thu" />
 
         <Button
+            android:background="@drawable/custom_button"
             android:id="@+id/btn_notification"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -41,6 +45,7 @@
             android:text="Thông báo" />
 
         <Button
+            android:background="@drawable/custom_button"
             android:id="@+id/btn_messenger"
             android:layout_width="0dp"
             android:layout_height="match_parent"

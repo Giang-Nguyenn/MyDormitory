@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.mydormitory.font.CircleTransform;
 import com.example.mydormitory.user.User_Messenger_Header;
 import com.example.mydormitory.Hi;
 import com.example.mydormitory.R;
@@ -62,7 +63,7 @@ class User_Messenger_Header_Adapter extends BaseAdapter {
         txt_name.setText("Admin");
         txt_mess.setText(messenger_header.getMessenger());
         txt_time.setText(messenger_header.getTime().substring(11,16));
-        Picasso.get().load(hi.getIp().toString()+"Images/Admin.PNG").into(image_view);
+        Picasso.get().load(hi.getIp().toString()+"Images/Admin.PNG").transform(new CircleTransform()).into(image_view);
 
 
         return convertView;

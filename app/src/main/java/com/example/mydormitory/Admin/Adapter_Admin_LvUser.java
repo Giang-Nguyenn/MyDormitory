@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.mydormitory.Hi;
 import com.example.mydormitory.R;
+import com.example.mydormitory.font.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -50,7 +51,7 @@ class Adapter_Admin_LvUser extends BaseAdapter {
         TextView txt_name=(TextView) convertView.findViewById(R.id.txt_name);
         TextView txt_address=(TextView) convertView.findViewById(R.id.txt_address);
         Admin_LvUser admin_lvUser=admin_lvUsers.get(position);
-        Picasso.get().load(hi.getIp().toString()+admin_lvUser.getImage().substring(21)).into(image_view);
+        Picasso.get().load(hi.getIp().toString()+admin_lvUser.getImage().substring(21)).transform(new CircleTransform()).into(image_view);
         txt_name.setText(admin_lvUser.getName());
         txt_address.setText(admin_lvUser.getAddress());
         return convertView;
