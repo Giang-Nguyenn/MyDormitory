@@ -52,10 +52,10 @@
 
     <EditText
         android:id="@+id/edt_input"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/edit_text"
         android:hint="Messenger"
@@ -67,13 +67,13 @@
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/button_none_background"
         android:text="Gửi"
         android:textColor="@color/color7"
-        android:textSize="18dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

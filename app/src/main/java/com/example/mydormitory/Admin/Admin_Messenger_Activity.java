@@ -112,7 +112,7 @@ public class Admin_Messenger_Activity extends AppCompatActivity {
         textView=(TextView) findViewById(R.id.txt);
         textView1=(TextView) findViewById(R.id.txt1);
         listview=(ListView) findViewById(R.id.listview);
-        btn_seach=(Button) findViewById(R.id.btn_seach);
+//        btn_seach=(Button) findViewById(R.id.btn_seach);
 
 
         btn_home=(Button) findViewById(R.id.btn_home);

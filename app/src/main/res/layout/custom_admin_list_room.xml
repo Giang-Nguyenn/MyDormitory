@@ -53,7 +53,7 @@
         android:layout_marginBottom="8dp"
         android:background="#4CAF50"
         android:gravity="center"
-        android:text="TextView"
+        android:text="aaa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

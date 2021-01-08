@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class User_Messenger_Content_Activity extends AppCompatActivity {
     User_Messenger_Adapter adapter_messenger;
     ListView listview1;
     Button btn_send;
+    TextView txt_name;
     EditText edt_input;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class User_Messenger_Content_Activity extends AppCompatActivity {
         listview1=(ListView) findViewById(R.id.listview1);
         btn_send=(Button) findViewById(R.id.btn_send);
         edt_input=(EditText) findViewById(R.id.edt_input);
+        txt_name=(TextView) findViewById(R.id.txt_name);
+        txt_name.setText("Admin");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         SharedPreferences sharedPref =getSharedPreferences("User", Context.MODE_PRIVATE);
         final String UserId = sharedPref.getString("UserId", "ko co name");

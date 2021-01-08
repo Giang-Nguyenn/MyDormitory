@@ -49,7 +49,7 @@ class Adapter_Admin_LvRoom extends BaseAdapter {
             admin_lvRoom.setCount("0");
         }
         txt_room.setText(admin_lvRoom.getName().toString());
-        txt_count.setText("Số lượng : "+admin_lvRoom.getCount().toString());
+        txt_count.setText("Count:"+admin_lvRoom.getCount().toString());
         txt_color.setText(admin_lvRoom.getColor().toString());
         return convertView;
     }
